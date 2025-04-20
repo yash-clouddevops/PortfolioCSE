@@ -331,7 +331,7 @@
 
         // Initialize EmailJS
         (function() {
-            emailjs.init("NEnrAEqmxPhD563yg"); // Replace with your public key
+            emailjs.init("yPYrV-UR2BWF7-eDR"); // Replace with your public key
         })();
 
         // Form submission handling
@@ -351,12 +351,12 @@
                 profession: this.profession.value,
                 subject: this.subject.value,
                 message: this.message.value,
-                to_email: "sahoodebasis146@gmail.com",
+                to_email: "yashjain05@hotmail.com",
                 reply_to: this.email.value
             };
 
             // Send email using EmailJS
-            emailjs.send('service_knxcnx6', 'template_hdtp7si', templateParams)
+            emailjs.send('service_31bxt3s', 'template_qyrn5gp', templateParams)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     // Show success message
