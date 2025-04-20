@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Yash Kumar Jain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+</head>
+<body class="bg-gradient-to-br from-[var(--peach-puff)] to-[var(--pastel-pink)] text-[var(--dark-text)] font-sans">
+    <!-- Particles.js Background -->
+    <div id="particles-js" class="fixed top-0 left-0 w-full h-full z-0"></div>
+    <!-- Floating Elements -->
+    <div class="floating-elements absolute inset-0 z-1" id="floatingElements"></div>
+
+    <!-- Include Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="pt-24 px-[10%] relative z-10 min-h-screen">
+        <section class="about-section">
+            <div class="text-center mb-12" data-aos="fade-down">
+                <h1 class="text-5xl mt-4 font-bold mb-4 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] bg-clip-text text-transparent">
+                    About Me
+                </h1>
+                <div class="w-24 h-1 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Professional Summary -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-right">
+                    <h2 class="text-3xl font-bold mb-6">Cloud & DevOps Engineer</h2>
+                    <p class="text-lg mb-4">
+                        I am a passionate Cloud and DevOps Engineer with expertise in designing, implementing, and maintaining scalable cloud infrastructure and CI/CD pipelines. My focus is on automating deployment processes and ensuring high availability of services.
+                    </p>
+                    <p class="text-lg">
+                        With a strong foundation in cloud technologies and DevOps practices, I specialize in creating efficient, secure, and scalable solutions that drive business growth and operational excellence.
+                    </p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-left">
+                    <h2 class="text-3xl font-bold mb-6">Core Specializations</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="specialization-card">
+                            <i class="devicon-linux-plain colored text-4xl mb-2"></i>
+                            <h3 class="text-xl font-semibold">Linux</h3>
+                            <p class="text-sm">System Administration & Scripting</p>
+                        </div>
+                        <div class="specialization-card">
+                            <i class="devicon-mysql-plain colored text-4xl mb-2"></i>
+                            <h3 class="text-xl font-semibold">SQL</h3>
+                            <p class="text-sm">Database Management</p>
+                        </div>
+                        <div class="specialization-card">
+                            <i class="fas fa-network-wired text-4xl mb-2 text-[var(--pastel-pink)]"></i>
+                            <h3 class="text-xl font-semibold">Networking</h3>
+                            <p class="text-sm">Network Architecture</p>
+                        </div>
+                        <div class="specialization-card">
+                            <i class="fas fa-code text-4xl mb-2 text-[var(--pastel-pink)]"></i>
+                            <h3 class="text-xl font-semibold">OOPs</h3>
+                            <p class="text-sm">Object-Oriented Programming</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Skills -->
+            <div class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-8 text-center">Technical Expertise</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Cloud Services -->
+                    <div class="skill-category bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-cloud text-[var(--pastel-pink)] mr-2"></i>
+                            Cloud Services
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="skill-item">
+                                <i class="devicon-amazonwebservices-original colored text-2xl"></i>
+                                <span>AWS</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="devicon-azure-plain colored text-2xl"></i>
+                                <span>Azure</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="devicon-googlecloud-plain colored text-2xl"></i>
+                                <span>GCP</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="devicon-heroku-original colored text-2xl"></i>
+                                <span>Heroku</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DevOps Tools -->
+                    <div class="skill-category bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-code-branch text-[var(--pastel-pink)] mr-2"></i>
+                            DevOps Tools
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="skill-item">
+                                <i class="devicon-docker-plain colored text-2xl"></i>
+                                <span>Docker</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="devicon-kubernetes-plain colored text-2xl"></i>
+                                <span>Kubernetes</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="devicon-jenkins-plain colored text-2xl"></i>
+                                <span>Jenkins</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="devicon-terraform-plain colored text-2xl"></i>
+                                <span>Terraform</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Monitoring & Others -->
+                    <div class="skill-category bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-chart-line text-[var(--pastel-pink)] mr-2"></i>
+                            Monitoring & Others
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="skill-item">
+                                <i class="devicon-grafana-original colored text-2xl"></i>
+                                <span>Grafana</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="devicon-prometheus-original colored text-2xl"></i>
+                                <span>Prometheus</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="devicon-salesforce-plain colored text-2xl"></i>
+                                <span>Salesforce</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="devicon-ansible-plain colored text-2xl"></i>
+                                <span>Ansible</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Approach -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-6">My Approach</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="approach-item">
+                        <i class="fas fa-cogs text-4xl text-[var(--pastel-pink)] mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Automation First</h3>
+                        <p>Implementing automation in every aspect of the development and deployment process to ensure consistency and efficiency.</p>
+                    </div>
+                    <div class="approach-item">
+                        <i class="fas fa-shield-alt text-4xl text-[var(--pastel-pink)] mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Security Focused</h3>
+                        <p>Prioritizing security in all implementations, from infrastructure to application deployment.</p>
+                    </div>
+                    <div class="approach-item">
+                        <i class="fas fa-chart-line text-4xl text-[var(--pastel-pink)] mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Performance Optimization</h3>
+                        <p>Continuously monitoring and optimizing system performance for better scalability and reliability.</p>
+                    </div>
+                    <div class="approach-item">
+                        <i class="fas fa-users text-4xl text-[var(--pastel-pink)] mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Collaborative Development</h3>
+                        <p>Working closely with development teams to implement DevOps practices and improve workflow efficiency.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/header.js"></script>
+    <script src="js/hero.js"></script>
+    <style>
+        .specialization-card {
+            @apply bg-white/5 rounded-lg p-4 text-center hover:bg-white/10 transition-all duration-300;
+        }
+        .skill-category {
+            @apply hover:bg-white/20 transition-all duration-300;
+        }
+        .skill-item {
+            @apply flex items-center space-x-2 p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300;
+        }
+        .approach-item {
+            @apply p-6 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300;
+        }
+    </style>
+    <script>
+        // Load header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 1000
+                    }
+                },
+                "color": {
+                    "value": "#B5838D"
+                },
+                "shape": {
+                    "type": ["circle", "triangle", "polygon"],
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.4,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 4,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 3,
+                        "size_min": 0.5,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 120,
+                    "color": "#E5989B",
+                    "opacity": 0.3,
+                    "width": 1.2
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 800,
+                        "rotateY": 1600
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "bubble"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 150,
+                        "line_linked": {
+                            "opacity": 0.8
+                        }
+                    },
+                    "bubble": {
+                        "distance": 200,
+                        "size": 20,
+                        "duration": 1,
+                        "opacity": 0.8,
+                        "speed": 2
+                    },
+                    "repulse": {
+                        "distance": 100,
+                        "duration": 0.5
+                    },
+                    "push": {
+                        "particles_nb": 6
+                    },
+                    "remove": {
+                        "particles_nb": 3
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+
+        // Create floating elements
+        const floatingContainer = document.getElementById('floatingElements');
+        const shapes = ['circle', 'triangle', 'square', 'blob'];
+        const colors = [
+            'rgba(255, 180, 162, 0.4)',
+            'rgba(230, 152, 155, 0.4)',
+            'rgba(181, 131, 141, 0.4)',
+            'rgba(109, 104, 117, 0.4)'
+        ];
+        
+        for (let i = 0; i < 25; i++) {
+            const element = document.createElement('div');
+            element.classList.add('floating-element');
+            
+            // Random size between 10px and 40px
+            const size = Math.random() * 30 + 10;
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            
+            // Random shape
+            const shape = shapes[Math.floor(Math.random() * shapes.length)];
+            if (shape === 'triangle') {
+                element.style.clipPath = 'polygon(50% 0%, 0% 100%, 100% 100%)';
+                element.style.borderRadius = '0';
+            } else if (shape === 'square') {
+                element.style.borderRadius = '5px';
+            } else if (shape === 'blob') {
+                element.style.borderRadius = '50% 30% 70% 40% / 60% 40% 60% 40%';
+            }
+            
+            // Random color
+            element.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random position
+            element.style.left = `${Math.random() * 100}%`;
+            element.style.bottom = `-${size}px`;
+            
+            // Random animation duration between 10s and 30s
+            const duration = Math.random() * 20 + 10;
+            element.style.animationDuration = `${duration}s`;
+            
+            // Random delay
+            element.style.animationDelay = `${Math.random() * 10}s`;
+            
+            floatingContainer.appendChild(element);
+        }
+    </script>
+</body>
+</html>

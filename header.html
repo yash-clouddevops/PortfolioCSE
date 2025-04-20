@@ -1,0 +1,37 @@
+<!-- Navigation Bar -->
+<header class="fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl bg-[var(--english-lavender)] shadow-2xl z-50 flex justify-between items-center px-8 py-4 rounded-lg border border-[var(--pastel-pink)]">
+    <div class="logo flex items-center text-2xl font-bold">
+        <span class="profile-logo bg-[var(--melon)] text-[var(--light-text)] rounded-full w-8 h-8 flex items-center justify-center mr-2">Y</span>
+        Yash Kumar Jain <span class="text-[var(--melon)] ml-2">| Portfolio</span>
+    </div>
+    <nav>
+        <div class="hidden md:flex space-x-6 items-center">
+            <a href="index.html" class="text-[var(--light-text)] hover:text-[var(--melon)] transition-colors font-medium">Home</a>
+            <a href="skills.html" class="text-[var(--light-text)] hover:text-[var(--melon)] transition-colors font-medium">Technical Skills</a>
+            <a href="projects.html" class="text-[var(--light-text)] hover:text-[var(--melon)] transition-colors font-medium">Projects</a>
+            <a href="certifications.html" class="text-[var(--light-text)] hover:text-[var(--melon)] transition-colors font-medium">Certifications</a>
+            <div class="dropdown relative">
+                <div class="menu-icon text-[var(--light-text)] cursor-pointer text-2xl">☰</div>
+                <div class="dropdown-content absolute right-0 bg-[var(--old-lavender)] min-w-[160px] shadow-xl rounded-md hidden">
+                    <a href="resume.html" class="block px-4 py-3 text-[var(--light-text)] hover:bg-[var(--pastel-pink)] transition-colors">Resume</a>
+                    <a href="activity.html" class="block px-4 py-3 text-[var(--light-text)] hover:bg-[var(--pastel-pink)] transition-colors">Activity</a>
+                    <a href="about.html" class="block px-4 py-3 text-[var(--light-text)] hover:bg-[var(--pastel-pink)] transition-colors">About Me</a>
+                    <a href="contact.html" class="block px-4 py-3 text-[var(--light-text)] hover:bg-[var(--pastel-pink)] transition-colors">Contact Me</a>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden">
+            <button id="dropdown-toggle" class="text-[var(--light-text)] focus:outline-none text-2xl">☰</button>
+        </div>
+    </nav>
+    <div id="dropdown-menu" class="dropdown-menu container mx-auto px-4 pb-4 md:hidden bg-[var(--english-lavender)] hidden rounded-b-lg">
+        <a href="index.html" class="block py-2 text-[var(--light-text)] hover:text-[var(--melon)] transition-colors">Home</a>
+        <a href="skills.html" class="block py-2 text-[var(--light-text)] hover:text-[var(--melon)] transition-colors">Technical Skills</a>
+        <a href="projects.html" class="block py-2 text-[var(--light-text)] hover:text-[var(--melon)] transition-colors">Projects</a>
+        <a href="certifications.html" class="block py-2 text-[var(--light-text)] hover:text-[var(--melon)] transition-colors">Certifications</a>
+        <a href="resume.html" class="block py-2 text-[var(--light-text)] hover:text-[var(--melon)] transition-colors">Resume</a>
+        <a href="activity.html" class="block py-2 text-[var(--light-text)] hover:text-[var(--melon)] transition-colors">Activity</a>
+        <a href="about.html" class="block py-2 text-[var(--light-text)] hover:text-[var(--melon)] transition-colors">About Me</a>
+        <a href="contact.html" class="block py-2 text-[var(--light-text)] hover:text-[var(--melon)] transition-colors">Contact Me</a>
+    </div>
+</header> 
