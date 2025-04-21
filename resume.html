@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume | Yash Kumar Jain</title>
+    <link rel="icon" href="assets/icons/icon3.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -20,7 +21,7 @@
     <div id="header-placeholder"></div>
 
     <!-- Main Content -->
-    <main class="pt-24 px-[10%] relative z-10 min-h-screen">
+    <main class="pt-24 px-[10%] relative z-10 min-h-screen pb-16">
         <section class="resume-section">
             <div class="text-center mb-12" data-aos="fade-down">
                 <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] bg-clip-text text-transparent">
@@ -29,41 +30,55 @@
                 <div class="w-24 h-1 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] mx-auto rounded-full"></div>
             </div>
 
-            <!-- CV Download Section -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- CV Slider Section -->
+            <div class="max-w-4xl mx-auto">
+                <div class="flex justify-center mb-8 bg-white/20 backdrop-blur-lg rounded-lg p-1 shadow-lg w-fit mx-auto">
+                    <button class="cv-tab px-6 py-2 text-lg font-semibold rounded-lg transition-all duration-300 bg-[var(--pastel-pink)] text-white shadow-md hover:shadow-xl" onclick="showCV('general')">General CV</button>
+                    <button class="cv-tab px-6 py-2 text-lg font-semibold rounded-lg transition-all duration-300 bg-transparent text-[var(--dark-text)] hover:bg-[var(--peach-puff)] hover:text-white" onclick="showCV('specialized')">Specialized CV</button>
+                </div>
+
                 <!-- General CV -->
-                <div class="cv-card bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-right">
-                    <div class="text-center mb-6">
-                        <i class="fas fa-file-alt text-5xl text-[var(--pastel-pink)] mb-4"></i>
-                        <h2 class="text-2xl font-bold mb-2">General CV</h2>
-                        <p class="text-gray-600 mb-4">A comprehensive overview of my professional journey</p>
-                    </div>
-                    <div class="flex justify-center">
-                        <a href="/assets/documents/general_cv.pdf" download class="download-btn">
-                            <i class="fas fa-download mr-2"></i>
-                            Download CV
-                        </a>
+                <div id="general-cv" class="cv-content">
+                    <div class="cv-card bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-right">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-file-alt text-5xl text-[var(--pastel-pink)] mb-4"></i>
+                            <h2 class="text-2xl font-bold mb-2">General CV</h2>
+                            <p class="text-gray-600 mb-4">A comprehensive overview of my professional journey</p>
+                        </div>
+                        <div class="mb-6">
+                            <img src="/assets/images/generalCV.png" alt="General CV Preview" class="w-3/4 h-auto rounded-lg shadow-md object-contain mx-auto">
+                        </div>
+                        <div class="flex justify-center">
+                            <a href="/assets/documents/general_cv.pdf" download class="download-btn bg-[var(--pastel-pink)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[var(--dark-text)] transition-all duration-300 flex items-center shadow-lg hover:shadow-xl">
+                                <i class="fas fa-download mr-2"></i>
+                                Download CV
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Specialized CV -->
-                <div class="cv-card bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-left">
-                    <div class="text-center mb-6">
-                        <i class="fas fa-file-code text-5xl text-[var(--pastel-pink)] mb-4"></i>
-                        <h2 class="text-2xl font-bold mb-2">Specialized CV</h2>
-                        <p class="text-gray-600 mb-4">Detailed technical expertise and specialized skills</p>
-                    </div>
-                    <div class="flex justify-center">
-                        <a href="/assets/documents/specialized_cv.pdf" download class="download-btn">
-                            <i class="fas fa-download mr-2"></i>
-                            Download CV
-                        </a>
+                <div id="specialized-cv" class="cv-content hidden">
+                    <div class="cv-card bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-left">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-file-code text-5xl text-[var(--pastel-pink)] mb-4"></i>
+                            <h2 class="text-2xl font-bold mb-2">Specialized CV</h2>
+                            <p class="text-gray-600 mb-4">Detailed technical expertise and specialized skills</p>
+                        </div>
+                        <div class="mb-6">
+                            <img src="/assets/images/specialized_cv.png" alt="Specialized CV Preview" class="w-3/4 h-auto rounded-lg shadow-md object-contain mx-auto">
+                        </div>
+                        <div class="flex justify-center">
+                            <a href="/assets/documents/specialized_cv.pdf" download class="download-btn bg-[var(--pastel-pink)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[var(--dark-text)] transition-all duration-300 flex items-center shadow-lg hover:shadow-xl">
+                                <i class="fas fa-download mr-2"></i>
+                                Download CV
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
     <script src="js/header.js"></script>
     <script src="js/hero.js"></script>
     <script>
@@ -234,6 +249,29 @@
             element.style.animationDelay = `${Math.random() * 10}s`;
             
             floatingContainer.appendChild(element);
+            
+        }
+        // CV Slider Functionality
+        function showCV(type) {
+            const generalCV = document.getElementById('general-cv');
+            const specializedCV = document.getElementById('specialized-cv');
+            const tabs = document.getElementsByClassName('cv-tab');
+
+            if (type === 'general') {
+                generalCV.classList.remove('hidden');
+                specializedCV.classList.add('hidden');
+                tabs[0].classList.add('bg-[var(--pastel-pink)]', 'text-white', 'shadow-md');
+                tabs[0].classList.remove('bg-transparent', 'text-[var(--dark-text)]');
+                tabs[1].classList.add('bg-transparent', 'text-[var(--dark-text)]');
+                tabs[1].classList.remove('bg-[var(--pastel-pink)]', 'text-white', 'shadow-md');
+            } else {
+                generalCV.classList.add('hidden');
+                specializedCV.classList.remove('hidden');
+                tabs[1].classList.add('bg-[var(--pastel-pink)]', 'text-white', 'shadow-md');
+                tabs[1].classList.remove('bg-transparent', 'text-[var(--dark-text)]');
+                tabs[0].classList.add('bg-transparent', 'text-[var(--dark-text)]');
+                tabs[0].classList.remove('bg-[var(--pastel-pink)]', 'text-white', 'shadow-md');
+            }
         }
     </script>
 

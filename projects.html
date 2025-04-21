@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Yash Kumar Jain</title>
+    <link rel="icon" href="assets/icons/icon3.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -20,10 +21,63 @@
     <div id="header-placeholder"></div>
 
     <!-- Main Content -->
-    <main class="pt-24 px-[10%] relative z-10 min-h-screen">
+    <main class="pt-24 px-[10%] relative z-10 min-h-screen pb-16">
         <section class="projects-section">
-            <h1 class="text-4xl font-bold text-center mb-12">My Projects</h1>
-            <!-- Add your projects content here -->
+            <div class="text-center mb-12" data-aos="fade-down">
+                <h1 class="text-5xl mt-4 h-16 font-bold mb-2 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] bg-clip-text text-transparent">
+                    My Projects
+                </h1>
+                <div class="w-24 h-1 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- RTOS Security Event Logger -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
+                    <h2 class="text-2xl font-semibold mb-4">RTOS Security Event Logger</h2>
+                    <p class="text-gray-600 mb-4">Python-based real-time security event logging system</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Implemented real-time logging mechanisms using Python, ensuring minimal performance overhead while tracking security events</li>
+                        <li>Designed a graphical visualization module with Matplotlib, providing clear insights into security trends</li>
+                        <li>Integrated Flask-based API endpoints to facilitate remote access and management</li>
+                        <li>Optimized event processing with multi-threading for efficient resource utilization</li>
+                    </ul>
+                </div>
+
+                <!-- Data Pipeline -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <h2 class="text-2xl font-semibold mb-4">Data Pipeline</h2>
+                    <p class="text-gray-600 mb-4">AWS-based ETL solution for data processing</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Developed ETL workflows in AWS Glue for automated data processing</li>
+                        <li>Configured IAM Roles and policies for secure access controls</li>
+                        <li>Optimized EC2 instances for efficient data processing</li>
+                        <li>Monitored pipeline operations using AWS CloudWatch</li>
+                    </ul>
+                </div>
+
+                <!-- Data Monitoring -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <h2 class="text-2xl font-semibold mb-4">Data Monitoring</h2>
+                    <p class="text-gray-600 mb-4">System monitoring solution using Docker, Prometheus, and Grafana</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Configured Docker containers for monitoring tools deployment</li>
+                        <li>Integrated Prometheus and Grafana for system metrics visualization</li>
+                        <li>Automated data collection and alerting using Prometheus exporters</li>
+                        <li>Designed custom Grafana dashboards for real-time monitoring</li>
+                    </ul>
+                </div>
+
+                <!-- Jenkins Server -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <h2 class="text-2xl font-semibold mb-4">Jenkins Server</h2>
+                    <p class="text-gray-600 mb-4">CI/CD pipeline implementation with Jenkins</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Integrated Jenkins with version control systems for automated workflows</li>
+                        <li>Optimized Jenkins jobs and pipeline execution for faster deployments</li>
+                        <li>Implemented security best practices on Jenkins and AWS EC2</li>
+                        <li>Monitored server performance and logs for system reliability</li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </main>
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certifications | Yash Kumar Jain</title>
+    <link rel="icon" href="assets/icons/icon3.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -21,7 +22,7 @@
     <div id="header-placeholder"></div>
 
     <!-- Main Content -->
-    <main class="pt-24 px-[10%] relative z-10 min-h-screen">
+    <main class="pt-24 px-[10%] relative z-10 min-h-screen pb-16">
         <section class="certifications-section">
             <div class="text-center mb-12" data-aos="fade-down">
                 <h1 class="text-5xl mt-4 font-bold mb-4 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] bg-clip-text text-transparent">
@@ -30,44 +31,98 @@
                 <div class="w-24 h-1 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <!-- Azure Certifications -->
-                <div class="certification-card group" data-aos="fade-right">
-                    <div class="certification-header">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure Logo" class="w-16 h-16">
-                        <h3 class="text-2xl font-semibold">Microsoft Azure</h3>
-                    </div>
-                    <div class="certification-content">
-                        <div class="certification-item">
-                            <h4 class="text-xl font-medium">Azure Administrator Associate</h4>
-                            <p class="text-gray-600">Microsoft Certified: Azure Administrator Associate</p>
+                <div class="certification-card" data-aos="fade-up">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-lg relative overflow-hidden">
+                        <div class="certification-header flex items-center space-x-4 mb-6">
+                            <div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure Logo" class="w-14 h-14">
+                            </div>
+                            <h3 class="text-2xl font-semibold bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--english-lavender)] bg-clip-text text-transparent">Microsoft Azure</h3>
                         </div>
-                        <div class="certification-item">
-                            <h4 class="text-xl font-medium">Azure Fundamentals</h4>
-                            <p class="text-gray-600">Microsoft Certified: Azure Fundamentals</p>
+                        <div class="certification-content space-y-4">
+                            <div class="certification-item bg-white/5 p-5 rounded-xl">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="text-xl font-medium text-[var(--pastel-pink)] mb-2">Azure Administrator Associate</h4>
+                                    <button class="badge-toggle text-[var(--pastel-pink)]" onclick="toggleBadge('azure-admin')">
+                                        <i class="fas fa-id-badge"></i>
+                                    </button>
+                                </div>
+                                <p class="text-gray-600">Microsoft Certified: Azure Administrator Associate</p>
+                                <div class="badge-content" id="azure-admin-badge">
+                                    <img src="./assets/images/microsoft.png" alt="Azure Administrator Associate" class="h-28 mx-auto">
+                                </div>
+                                <p class="text-sm text-[var(--pastel-pink)] mt-3 flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    Issued: April 2025
+                                </p>
+                            </div>
+                            <div class="certification-item bg-white/5 p-5 rounded-xl">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="text-xl font-medium text-[var(--pastel-pink)] mb-2">Azure Fundamentals</h4>
+                                    <button class="badge-toggle text-[var(--pastel-pink)]" onclick="toggleBadge('azure-fund')">
+                                        <i class="fas fa-id-badge"></i>
+                                    </button>
+                                </div>
+                                <p class="text-gray-600">Microsoft Certified: Azure Fundamentals</p>
+                                <div class="badge-content" id="azure-fund-badge">
+                                    <img src="./assets/images/azureFundamentals.png" alt="Azure Fundamentals" class="h-28 mx-auto">
+                                </div>
+                                <p class="text-sm text-[var(--pastel-pink)] mt-3 flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    Issued: July 2024
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- AWS Certifications -->
-                <div class="certification-card group" data-aos="fade-left">
-                    <div class="certification-header">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" class="w-16 h-16">
-                        <h3 class="text-2xl font-semibold">Amazon Web Services</h3>
-                    </div>
-                    <div class="certification-content">
-                        <div class="certification-item">
-                            <h4 class="text-xl font-medium">AWS Academy Cloud Architecting</h4>
-                            <p class="text-gray-600">AWS Certified Solutions Architect - Associate Level</p>
+                <div class="certification-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-lg relative overflow-hidden">
+                        <div class="certification-header flex items-center space-x-4 mb-6">
+                            <div >
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" class="w-14 h-14">
+                            </div>
+                            <h3 class="text-2xl font-semibold bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--english-lavender)] bg-clip-text text-transparent">Amazon Web Services</h3>
                         </div>
-                        <div class="certification-item">
-                            <h4 class="text-xl font-medium">AWS Academy Cloud Foundations</h4>
-                            <p class="text-gray-600">AWS Certified Cloud Practitioner</p>
+                        <div class="certification-content space-y-4">
+                            <div class="certification-item bg-white/5 p-5 rounded-xl">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="text-xl font-medium text-[var(--pastel-pink)] mb-2">AWS Academy Cloud Architecting</h4>
+                                    <button class="badge-toggle text-[var(--pastel-pink)]" onclick="toggleBadge('aws-arch')">
+                                        <i class="fas fa-id-badge"></i>
+                                    </button>
+                                </div>
+                                <p class="text-gray-600">AWS Certified Solutions Architect Associate</p>
+                                <div class="badge-content" id="aws-arch-badge">
+                                    <img src="./assets/images/img2.png" alt="AWS Cloud Architecting" class="h-28 mx-auto">
+                                </div>
+                                <p class="text-sm text-[var(--pastel-pink)] mt-3 flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    Issued: November 2024
+                                </p>
+                            </div>
+                            <div class="certification-item bg-white/5 p-5 rounded-xl">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="text-xl font-medium text-[var(--pastel-pink)] mb-2">AWS Academy Cloud Foundations</h4>
+                                    <button class="badge-toggle text-[var(--pastel-pink)]" onclick="toggleBadge('aws-found')">
+                                        <i class="fas fa-id-badge"></i>
+                                    </button>
+                                </div>
+                                <p class="text-gray-600">AWS Certified Cloud Practitioner</p>
+                                <div class="badge-content" id="aws-found-badge">
+                                    <img src="./assets/images/img1.png" alt="AWS Cloud Foundations" class="h-28 mx-auto">
+                                </div>
+                                <p class="text-sm text-[var(--pastel-pink)] mt-3 flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    Issued: May 2024
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                
             </div>
         </section>
     </main>
@@ -76,22 +131,122 @@
     <script src="js/hero.js"></script>
     <style>
         .certification-card {
-            @apply bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg transition-all duration-300 hover:bg-white/20 hover:scale-105;
+            perspective: 1000px;
         }
-        .certification-header {
-            @apply flex items-center space-x-4 mb-6 pb-6 border-b border-white/20;
+        .certification-card > div {
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
+            position: relative;
         }
-        .certification-content {
-            @apply space-y-6;
+        .certification-card > div::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--pastel-pink), var(--english-lavender));
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        .certification-card:hover > div::before {
+            width: 100%;
+        }
+        .logo-container {
+            background: var(--pastel-pink);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .certification-item {
-            @apply bg-white/5 p-4 rounded-lg transition-all duration-300 hover:bg-white/10;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        .certification-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
         }
         .certification-item h4 {
-            @apply text-[var(--pastel-pink)] mb-2;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .certification-item h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(to right, var(--pastel-pink), var(--english-lavender));
+        }
+        .badge-toggle {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 6px 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .badge-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        .badge-content {
+            display: none;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            text-align: center;
+            transition: all 0.5s ease;
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        .badge-content.show {
+            display: block;
+            transform: scale(1);
+            opacity: 1;
+        }
+        .badge-content img {
+            height: 112px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+        .badge-content img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
         }
     </style>
     <script>
+        // Toggle badge visibility
+        function toggleBadge(id) {
+            // Get the badge element
+            const badgeEl = document.getElementById(`${id}-badge`);
+            
+            // Toggle show class
+            if (badgeEl.classList.contains('show')) {
+                badgeEl.classList.remove('show');
+                setTimeout(() => {
+                    badgeEl.style.display = 'none';
+                }, 50);
+            } else {
+                badgeEl.style.display = 'block';
+                setTimeout(() => {
+                    badgeEl.classList.add('show');
+                }, 50);
+            }
+            
+            // Toggle button appearance
+            const toggleBtn = event.currentTarget;
+            if (badgeEl.classList.contains('show')) {
+                toggleBtn.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                toggleBtn.innerHTML = '<i class="fas fa-id-badge"></i>';
+            }
+        }
+
         // Load header
         fetch('header.html')
             .then(response => response.text())
