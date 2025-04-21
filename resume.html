@@ -22,8 +22,45 @@
     <!-- Main Content -->
     <main class="pt-24 px-[10%] relative z-10 min-h-screen">
         <section class="resume-section">
-            <h1 class="text-4xl font-bold text-center mb-12">My Resume</h1>
-            <!-- Add your resume content here -->
+            <div class="text-center mb-12" data-aos="fade-down">
+                <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] bg-clip-text text-transparent">
+                    My Resume
+                </h1>
+                <div class="w-24 h-1 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] mx-auto rounded-full"></div>
+            </div>
+
+            <!-- CV Download Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- General CV -->
+                <div class="cv-card bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-right">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-file-alt text-5xl text-[var(--pastel-pink)] mb-4"></i>
+                        <h2 class="text-2xl font-bold mb-2">General CV</h2>
+                        <p class="text-gray-600 mb-4">A comprehensive overview of my professional journey</p>
+                    </div>
+                    <div class="flex justify-center">
+                        <a href="/assets/documents/general_cv.pdf" download class="download-btn">
+                            <i class="fas fa-download mr-2"></i>
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Specialized CV -->
+                <div class="cv-card bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-left">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-file-code text-5xl text-[var(--pastel-pink)] mb-4"></i>
+                        <h2 class="text-2xl font-bold mb-2">Specialized CV</h2>
+                        <p class="text-gray-600 mb-4">Detailed technical expertise and specialized skills</p>
+                    </div>
+                    <div class="flex justify-center">
+                        <a href="/assets/documents/specialized_cv.pdf" download class="download-btn">
+                            <i class="fas fa-download mr-2"></i>
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -199,5 +236,19 @@
             floatingContainer.appendChild(element);
         }
     </script>
+
+    <style>
+        .cv-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cv-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .download-btn {
+            @apply bg-[var(--pastel-pink)] text-white px-6 py-3 rounded-lg font-semibold 
+                   hover:bg-[var(--dark-text)] transition-all duration-300 flex items-center;
+        }
+    </style>
 </body>
 </html>
