@@ -159,6 +159,31 @@
         .approach-item {
             @apply p-6 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300;
         }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #e5989b, #b5838d);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #b5838d, #9a6b75);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #e5989b rgba(255, 255, 255, 0.1);
+        }
     </style>
     <script>
         // Load header

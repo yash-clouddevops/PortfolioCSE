@@ -24,7 +24,7 @@
     <main class="pt-24 px-[10%] relative z-10 min-h-screen pb-16">
         <section class="resume-section">
             <div class="text-center mb-12" data-aos="fade-down">
-                <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] bg-clip-text text-transparent">
+                <h1 class="text-4xl font-bold mt-4 mb-4 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] bg-clip-text text-transparent">
                     My Resume
                 </h1>
                 <div class="w-24 h-1 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] mx-auto rounded-full"></div>
@@ -33,13 +33,13 @@
             <!-- CV Slider Section -->
             <div class="max-w-4xl mx-auto">
                 <div class="flex justify-center mb-8 bg-white/20 backdrop-blur-lg rounded-lg p-1 shadow-lg w-fit mx-auto">
-                    <button class="cv-tab px-6 py-2 text-lg font-semibold rounded-lg transition-all duration-300 bg-[var(--pastel-pink)] text-white shadow-md hover:shadow-xl" onclick="showCV('general')">General CV</button>
-                    <button class="cv-tab px-6 py-2 text-lg font-semibold rounded-lg transition-all duration-300 bg-transparent text-[var(--dark-text)] hover:bg-[var(--peach-puff)] hover:text-white" onclick="showCV('specialized')">Specialized CV</button>
+                    <button class="cv-tab px-6 py-2 text-lg font-semibold rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105" onclick="showCV('general')">General</button>
+                    <button class="cv-tab px-6 py-2 text-lg font-semibold rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105" onclick="showCV('specialized')">Specialized</button>
                 </div>
 
                 <!-- General CV -->
                 <div id="general-cv" class="cv-content">
-                    <div class="cv-card bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-right">
+                    <div class="cv-card bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg transition-all duration-500 ease-in-out" data-aos="fade-right">
                         <div class="text-center mb-6">
                             <i class="fas fa-file-alt text-5xl text-[var(--pastel-pink)] mb-4"></i>
                             <h2 class="text-2xl font-bold mb-2">General CV</h2>
@@ -59,7 +59,7 @@
 
                 <!-- Specialized CV -->
                 <div id="specialized-cv" class="cv-content hidden">
-                    <div class="cv-card bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg" data-aos="fade-left">
+                    <div class="cv-card bg-white/10 backdrop-blur-lg rounded-lg p-8 shadow-lg transition-all duration-500 ease-in-out" data-aos="fade-left">
                         <div class="text-center mb-6">
                             <i class="fas fa-file-code text-5xl text-[var(--pastel-pink)] mb-4"></i>
                             <h2 class="text-2xl font-bold mb-2">Specialized CV</h2>
@@ -82,6 +82,42 @@
     <script src="js/header.js"></script>
     <script src="js/hero.js"></script>
     <script>
+        // Make all content unselectable
+        document.addEventListener('DOMContentLoaded', function() {
+            function makeUnselectable(elements) {
+                elements.forEach(element => {
+                    if (element.tagName === 'A' || element.tagName === 'BUTTON' || 
+                        element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' ||
+                        element.tagName === 'SELECT' || element.classList.contains('download-btn') ||
+                        element.classList.contains('badge-toggle')) {
+                        return;
+                    }
+
+                    element.style.userSelect = 'none';
+                    element.style.webkitUserSelect = 'none';
+                    element.style.mozUserSelect = 'none';
+                    element.style.msUserSelect = 'none';
+
+                    if (element.tagName === 'IMG') {
+                        element.draggable = false;
+                        element.style.pointerEvents = 'none';
+                    }
+                });
+            }
+
+            const contentSections = document.querySelectorAll('main, section, .resume-section');
+            contentSections.forEach(section => {
+                const elements = section.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, img, li');
+                makeUnselectable(elements);
+            });
+
+            const header = document.querySelector('header');
+            if (header) {
+                const headerElements = header.querySelectorAll('div, span, img');
+                makeUnselectable(headerElements);
+            }
+        });
+
         // Load header
         fetch('header.html')
             .then(response => response.text())
@@ -260,32 +296,101 @@
             if (type === 'general') {
                 generalCV.classList.remove('hidden');
                 specializedCV.classList.add('hidden');
-                tabs[0].classList.add('bg-[var(--pastel-pink)]', 'text-white', 'shadow-md');
-                tabs[0].classList.remove('bg-transparent', 'text-[var(--dark-text)]');
-                tabs[1].classList.add('bg-transparent', 'text-[var(--dark-text)]');
-                tabs[1].classList.remove('bg-[var(--pastel-pink)]', 'text-white', 'shadow-md');
+                tabs[0].classList.add('active');
+                tabs[1].classList.remove('active');
             } else {
                 generalCV.classList.add('hidden');
                 specializedCV.classList.remove('hidden');
-                tabs[1].classList.add('bg-[var(--pastel-pink)]', 'text-white', 'shadow-md');
-                tabs[1].classList.remove('bg-transparent', 'text-[var(--dark-text)]');
-                tabs[0].classList.add('bg-transparent', 'text-[var(--dark-text)]');
-                tabs[0].classList.remove('bg-[var(--pastel-pink)]', 'text-white', 'shadow-md');
+                tabs[1].classList.add('active');
+                tabs[0].classList.remove('active');
             }
         }
+
+        // Initialize with General CV active
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.getElementsByClassName('cv-tab');
+            tabs[0].classList.add('active');
+        });
     </script>
 
     <style>
+        .cv-tab {
+            background: transparent;
+            color: var(--dark-text);
+            position: relative;
+            overflow: visible;
+            z-index: 1;
+        }
+        .cv-tab.active {
+            background: var(--pastel-pink);
+            color: white;
+        }
+        .cv-content {
+            transition: all 0.5s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
         .cv-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, border-top 0.3s ease-in-out;
+            padding: 2.5rem;
+            border-top: 0 solid var(--pastel-pink);
+            overflow: visible;
+            position: relative;
+            z-index: 1;
         }
         .cv-card:hover {
+            border-top: 4px solid var(--pastel-pink);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .cv-card.hidden {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+        .cv-card:not(.hidden) {
+            opacity: 1;
+            transform: translateX(0);
         }
         .download-btn {
             @apply bg-[var(--pastel-pink)] text-white px-6 py-3 rounded-lg font-semibold 
                    hover:bg-[var(--dark-text)] transition-all duration-300 flex items-center;
+            position: relative;
+            z-index: 2;
+        }
+        .cv-card i {
+            position: relative;
+            z-index: 2;
+        }
+        .cv-card img {
+            position: relative;
+            z-index: 2;
+        }
+        .cv-tab:hover {
+            transform: scale(1.05);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #e5989b, #b5838d);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #b5838d, #9a6b75);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #e5989b rgba(255, 255, 255, 0.1);
         }
     </style>
 </body>

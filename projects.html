@@ -9,7 +9,229 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            overflow-y: auto;
+            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+        }
+
+        .modal-content::-webkit-scrollbar {
+            display: none;  /* Chrome, Safari and Opera */
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .view-details-btn {
+            background: linear-gradient(45deg, #e5989b, #b5838d);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        .view-details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #b5838d, #9a6b75);
+        }
+
+        .modal-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            width: 100%;
+            height: 250px;
+        }
+
+        .modal-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .modal-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .modal-image-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-image-container:hover::after {
+            opacity: 1;
+        }
+
+        .modal-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #modalDetails {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        #modalDetails li {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #modalDetails li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, #f8e1e4, #e5989b);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #modalDetails li:hover {
+            transform: translateX(5px);
+            background: #f1f3f5;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #modalDetails li:hover::before {
+            opacity: 1;
+        }
+
+        #modalTags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        #modalTags span {
+            background: #f8e1e4;
+            color: #2d3748;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #modalTags span::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f8e1e4, #e5989b);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        #modalTags span:hover {
+            transform: translateY(-2px);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #modalTags span:hover::before {
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #e5989b, #b5838d);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #b5838d, #9a6b75);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #e5989b rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-br from-[var(--peach-puff)] to-[var(--pastel-pink)] text-[var(--dark-text)] font-sans">
     <!-- Particles.js Background -->
@@ -31,59 +253,227 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- RTOS Security Event Logger -->
-                <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
-                    <h2 class="text-2xl font-semibold mb-4">RTOS Security Event Logger</h2>
-                    <p class="text-gray-600 mb-4">Python-based real-time security event logging system</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Implemented real-time logging mechanisms using Python, ensuring minimal performance overhead while tracking security events</li>
-                        <li>Designed a graphical visualization module with Matplotlib, providing clear insights into security trends</li>
-                        <li>Integrated Flask-based API endpoints to facilitate remote access and management</li>
-                        <li>Optimized event processing with multi-threading for efficient resource utilization</li>
-                    </ul>
+                <div class="project-card bg-white/10 backdrop-blur-lg rounded-lg p-4 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-transparent hover:border-[#f8e1e4] relative overflow-hidden group" data-aos="fade-up">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    <div class="thumbnail-container relative overflow-hidden rounded-lg mb-4 group-hover:shadow-md transition-all duration-300">
+                        <img src="assets/images/rtos.png" alt="RTOS Security Project" class="w-full h-48 object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-2 text-[#2d3748] group-hover:text-[#1a202c] transition-colors duration-300">RTOS Security Event Logger</h2>
+                    <p class="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">Python-based real-time security event logging system</p>
+                    <button class="view-details-btn" data-project="rtos">View Details</button>
                 </div>
 
                 <!-- Data Pipeline -->
-                <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
-                    <h2 class="text-2xl font-semibold mb-4">Data Pipeline</h2>
-                    <p class="text-gray-600 mb-4">AWS-based ETL solution for data processing</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Developed ETL workflows in AWS Glue for automated data processing</li>
-                        <li>Configured IAM Roles and policies for secure access controls</li>
-                        <li>Optimized EC2 instances for efficient data processing</li>
-                        <li>Monitored pipeline operations using AWS CloudWatch</li>
-                    </ul>
+                <div class="project-card bg-white/10 backdrop-blur-lg rounded-lg p-4 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-transparent hover:border-[#f8e1e4] relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    <div class="thumbnail-container relative overflow-hidden rounded-lg mb-4 group-hover:shadow-md transition-all duration-300">
+                        <img src="assets/images/pipeline.png" alt="Data Pipeline Project" class="w-full h-48 object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-2 text-[#2d3748] group-hover:text-[#1a202c] transition-colors duration-300">Data Pipeline</h2>
+                    <p class="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">AWS-based ETL solution for data processing</p>
+                    <button class="view-details-btn" data-project="pipeline">View Details</button>
                 </div>
 
                 <!-- Data Monitoring -->
-                <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
-                    <h2 class="text-2xl font-semibold mb-4">Data Monitoring</h2>
-                    <p class="text-gray-600 mb-4">System monitoring solution using Docker, Prometheus, and Grafana</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Configured Docker containers for monitoring tools deployment</li>
-                        <li>Integrated Prometheus and Grafana for system metrics visualization</li>
-                        <li>Automated data collection and alerting using Prometheus exporters</li>
-                        <li>Designed custom Grafana dashboards for real-time monitoring</li>
-                    </ul>
+                <div class="project-card bg-white/10 backdrop-blur-lg rounded-lg p-4 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-transparent hover:border-[#f8e1e4] relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    <div class="thumbnail-container relative overflow-hidden rounded-lg mb-4 group-hover:shadow-md transition-all duration-300">
+                        <img src="assets/images/monotor.png" alt="Data Monitoring Project" class="w-full h-48 object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-2 text-[#2d3748] group-hover:text-[#1a202c] transition-colors duration-300">Data Monitoring</h2>
+                    <p class="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">System monitoring solution using Docker, Prometheus, and Grafana</p>
+                    <button class="view-details-btn" data-project="monitoring">View Details</button>
                 </div>
 
                 <!-- Jenkins Server -->
-                <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="300">
-                    <h2 class="text-2xl font-semibold mb-4">Jenkins Server</h2>
-                    <p class="text-gray-600 mb-4">CI/CD pipeline implementation with Jenkins</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Integrated Jenkins with version control systems for automated workflows</li>
-                        <li>Optimized Jenkins jobs and pipeline execution for faster deployments</li>
-                        <li>Implemented security best practices on Jenkins and AWS EC2</li>
-                        <li>Monitored server performance and logs for system reliability</li>
-                    </ul>
+                <div class="project-card bg-white/10 backdrop-blur-lg rounded-lg p-4 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-transparent hover:border-[#f8e1e4] relative overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    <div class="thumbnail-container relative overflow-hidden rounded-lg mb-4 group-hover:shadow-md transition-all duration-300">
+                        <img src="assets/images/jenkins.png" alt="Jenkins Server Project" class="w-full h-48 object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-2 text-[#2d3748] group-hover:text-[#1a202c] transition-colors duration-300">Jenkins Server</h2>
+                    <p class="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">CI/CD pipeline implementation with Jenkins</p>
+                    <button class="view-details-btn" data-project="jenkins">View Details</button>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Modal -->
+    <div class="modal" id="projectModal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <div class="flex flex-col">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="" class="w-full">
+                </div>
+                <div class="modal-details">
+                    <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
+                    <p id="modalDescription" class="text-gray-600 mb-4"></p>
+                    <ul id="modalDetails" class="list-disc list-inside space-y-2 text-gray-700 mb-4"></ul>
+                    <div id="modalTags" class="flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/header.js"></script>
     <script src="js/hero.js"></script>
     <script>
+        // Project details data
+        const projectDetails = {
+            rtos: {
+                title: "RTOS Security Event Logger",
+                description: "Python-based real-time security event logging system",
+                details: [
+                    "Implemented real-time logging mechanisms using Python, ensuring minimal performance overhead while tracking security events",
+                    "Designed a graphical visualization module with Matplotlib, providing clear insights into security trends",
+                    "Integrated Flask-based API endpoints to facilitate remote access and management",
+                    "Optimized event processing with multi-threading for efficient resource utilization"
+                ],
+                tags: ["Python", "Flask", "Matplotlib", "Multi-threading"],
+                image: "assets/images/rtos.png"
+            },
+            pipeline: {
+                title: "Data Pipeline",
+                description: "AWS-based ETL solution for data processing",
+                details: [
+                    "Developed ETL workflows in AWS Glue for automated data processing",
+                    "Configured IAM Roles and policies for secure access controls",
+                    "Optimized EC2 instances for efficient data processing",
+                    "Monitored pipeline operations using AWS CloudWatch"
+                ],
+                tags: ["AWS", "ETL", "CloudWatch", "IAM"],
+                image: "assets/images/pipeline.png"
+            },
+            monitoring: {
+                title: "Data Monitoring",
+                description: "System monitoring solution using Docker, Prometheus, and Grafana",
+                details: [
+                    "Configured Docker containers for monitoring tools deployment",
+                    "Integrated Prometheus and Grafana for system metrics visualization",
+                    "Automated data collection and alerting using Prometheus exporters",
+                    "Designed custom Grafana dashboards for real-time monitoring"
+                ],
+                tags: ["Docker", "Prometheus", "Grafana", "Monitoring"],
+                image: "assets/images/monotor.png"
+            },
+            jenkins: {
+                title: "Jenkins Server",
+                description: "CI/CD pipeline implementation with Jenkins",
+                details: [
+                    "Integrated Jenkins with version control systems for automated workflows",
+                    "Optimized Jenkins jobs and pipeline execution for faster deployments",
+                    "Implemented security best practices on Jenkins and AWS EC2",
+                    "Monitored server performance and logs for system reliability"
+                ],
+                tags: ["Jenkins", "CI/CD", "AWS EC2", "DevOps"],
+                image: "assets/images/jenkins.png"
+            }
+        };
+
+        // Modal functionality
+        const modal = document.getElementById('projectModal');
+        const closeBtn = document.querySelector('.close-modal');
+        const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+
+        function openModal(projectId) {
+            const project = projectDetails[projectId];
+            if (!project) return;
+
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalImage').src = project.image;
+            document.getElementById('modalImage').alt = project.title;
+
+            const detailsList = document.getElementById('modalDetails');
+            detailsList.innerHTML = '';
+            project.details.forEach(detail => {
+                const li = document.createElement('li');
+                li.textContent = detail;
+                detailsList.appendChild(li);
+            });
+
+            const tagsContainer = document.getElementById('modalTags');
+            tagsContainer.innerHTML = '';
+            project.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'px-2 py-1 bg-[#f8e1e4] text-[#2d3748] rounded-full text-sm';
+                span.textContent = tag;
+                tagsContainer.appendChild(span);
+            });
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        viewDetailsBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                openModal(btn.dataset.project);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Initialize Vanilla Tilt
+        VanillaTilt.init(document.querySelectorAll(".project-card"), {
+            max: 25,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5
+        });
+
+        // Make all content unselectable
+        document.addEventListener('DOMContentLoaded', function() {
+            function makeUnselectable(elements) {
+                elements.forEach(element => {
+                    if (element.tagName === 'A' || element.tagName === 'BUTTON' || 
+                        element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' ||
+                        element.tagName === 'SELECT' || element.classList.contains('download-btn') ||
+                        element.classList.contains('badge-toggle')) {
+                        return;
+                    }
+
+                    element.style.userSelect = 'none';
+                    element.style.webkitUserSelect = 'none';
+                    element.style.mozUserSelect = 'none';
+                    element.style.msUserSelect = 'none';
+
+                    if (element.tagName === 'IMG') {
+                        element.draggable = false;
+                        element.style.pointerEvents = 'none';
+                    }
+                });
+            }
+
+            const contentSections = document.querySelectorAll('main, section, .projects-section');
+            contentSections.forEach(section => {
+                const elements = section.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, img, li');
+                makeUnselectable(elements);
+            });
+
+            const header = document.querySelector('header');
+            if (header) {
+                const headerElements = header.querySelectorAll('div, span, img');
+                makeUnselectable(headerElements);
+            }
+        });
+
         // Load header
         fetch('header.html')
             .then(response => response.text())

@@ -32,4 +32,38 @@
         <a href="about.html" class="block py-2 text-[var(--light-text)] hover:text-[var(--melon)] transition-colors">About Me</a>
         <a href="contact.html" class="block py-2 text-[var(--light-text)] hover:text-[var(--melon)] transition-colors">Contact Me</a>
     </div>
-</header> 
+</header>
+
+<style>
+    /* Make header content unselectable */
+    header {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    /* Preserve link functionality */
+    header a {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    /* Make dropdown menu unselectable */
+    .dropdown-content, .dropdown-menu {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    /* Make menu icon unselectable */
+    .menu-icon, #dropdown-toggle {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+</style> 

@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="bg-[var(--peach-puff)] text-[var(--dark-text)] font-sans">
     <!-- Navigation Bar -->
@@ -59,7 +60,7 @@
             </div>
             <div class="hero-text max-w-[670px] text-center md:text-left">
                 <h1 class="text-6xl font-bold mb-4 bg-gradient-to-r from-[var(--pastel-pink)] to-[var(--dark-text)] bg-clip-text text-transparent">
-                    Hello, This is Yash
+                    <span id="typing-text"></span><span id="cursor" class="blinking-cursor">_</span>
                 </h1>
                 <h2 class="text-3xl mb-6 text-[var(--dark-text)]">Cloud & DevOps Engineer</h2>
                 <p class="text-xl mb-4 max-w-2xl text-[var(--dark-text)]">
@@ -79,7 +80,7 @@
                         <i class="fab fa-instagram text-2xl text-[var(--dark-text)] hover:text-[var(--pastel-pink)] transition-colors duration-300"></i>
                     </a>
                     <a href="https://x.com/seryashjain" target="_blank" class="social-icon bg-white/10 backdrop-blur-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
-                        <i class="fab fa-twitter text-2xl text-[var(--dark-text)] hover:text-[var(--pastel-pink)] transition-colors duration-300"></i>
+                        <i class="fa-brands fa-x-twitter text-2xl text-[var(--dark-text)] hover:text-[var(--pastel-pink)] transition-colors duration-300"></i>
                     </a>
                 </div>
                 <div class="cta-buttons flex justify-center md:justify-start gap-6">
@@ -92,5 +93,215 @@
 
     <script src="js/main.js"></script>
     <script src="js/hero.js"></script>
+
+    <!-- Typing Effect Script -->
+    <script>
+        const text = "Hello, This is Yash";
+        const typingText = document.getElementById("typing-text");
+        const cursor = document.getElementById("cursor");
+        let index = 0;
+        let isFirstRun = true;
+
+        function type() {
+            if (isFirstRun) {
+                // First run: start from "H"
+                if (index < text.length) {
+                    typingText.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, 200);
+                } else {
+                    isFirstRun = false;
+                    setTimeout(reset, 2000);
+                }
+            } else {
+                // Subsequent runs: start from "e" with "H" fixed
+                if (index === 0) {
+                    typingText.textContent = "H";
+                    index = 1; // Start from "e"
+                }
+                if (index < text.length) {
+                    typingText.textContent = "H" + text.slice(1, index + 1);
+                    index++;
+                    setTimeout(type, 200);
+                } else {
+                    setTimeout(reset, 2000);
+                }
+            }
+        }
+
+        function reset() {
+            typingText.textContent = "H"; // Keep "H" fixed
+            index = 0;
+            setTimeout(type, 500);
+        }
+
+        // Start typing effect when the page loads
+        window.onload = function() {
+            type();
+        };
+    </script>
+
+    <style>
+        /* Circular Icons Styles */
+        .circular-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 3;
+        }
+
+        .icon-wrapper {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .icon-wrapper:hover {
+            transform: scale(1.2) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Position the icons in a circle */
+        .linkedin {
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #0077b5, #00a0dc);
+        }
+
+        .github {
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #333, #24292e);
+        }
+
+        .twitter {
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #1da1f2, #0d8bd9);
+        }
+
+        .instagram {
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4);
+        }
+
+        /* Add hover effects */
+        .linkedin:hover {
+            background: linear-gradient(45deg, #00a0dc, #0077b5);
+        }
+
+        .github:hover {
+            background: linear-gradient(45deg, #24292e, #333);
+        }
+
+        .twitter:hover {
+            background: linear-gradient(45deg, #0d8bd9, #1da1f2);
+        }
+
+        .instagram:hover {
+            background: linear-gradient(45deg, #833AB4, #5851DB, #405DE6);
+        }
+
+        /* Blinking Cursor Style */
+        .blinking-cursor {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.2em; /* Increase cursor size for visibility */
+            color: transparent;
+            background: linear-gradient(to right, var(--pastel-pink), var(--dark-text));
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Profile Image Hover Effect */
+        .profile-container {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            perspective: 1000px;
+        }
+
+        .profile-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 50%;
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+            z-index: 1;
+            opacity: 0.8;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-image {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .profile-container:hover .profile-shape {
+            transform: rotate(225deg) scale(1.05);
+            opacity: 0.9;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-container:hover .profile-image {
+            transform: rotate(5deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #e5989b, #b5838d);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #b5838d, #9a6b75);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #e5989b rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </body>
 </html>

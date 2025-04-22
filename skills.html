@@ -396,15 +396,108 @@
     <style>
         .skill-category {
             @apply hover:bg-white/20 transition-all duration-300;
+            position: relative;
+            overflow: visible;
+            padding: 2.5rem;
+            border-top: 0 solid var(--pastel-pink);
+            transition: transform 0.3s ease, border-top 0.3s ease;
+            z-index: 1;
+        }
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-top: 4px solid var(--pastel-pink);
+        }
+        .skill-category::before {
+            display: none;
         }
         .skill-item {
             @apply flex items-center space-x-2 p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300;
+            position: relative;
+            overflow: visible;
+            z-index: 2;
+        }
+        .skill-item::after {
+            display: none;
         }
         .category-header {
             @apply border-b border-white/20 pb-4;
+            position: relative;
+            z-index: 2;
+        }
+        .category-header::after {
+            display: none;
+        }
+        .skill-item i {
+            position: relative;
+            z-index: 3;
+        }
+        .category-header i {
+            position: relative;
+            z-index: 3;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #e5989b, #b5838d);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #b5838d, #9a6b75);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #e5989b rgba(255, 255, 255, 0.1);
         }
     </style>
     <script>
+        // Make all content unselectable
+        document.addEventListener('DOMContentLoaded', function() {
+            function makeUnselectable(elements) {
+                elements.forEach(element => {
+                    if (element.tagName === 'A' || element.tagName === 'BUTTON' || 
+                        element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' ||
+                        element.tagName === 'SELECT' || element.classList.contains('download-btn') ||
+                        element.classList.contains('badge-toggle')) {
+                        return;
+                    }
+
+                    element.style.userSelect = 'none';
+                    element.style.webkitUserSelect = 'none';
+                    element.style.mozUserSelect = 'none';
+                    element.style.msUserSelect = 'none';
+
+                    if (element.tagName === 'IMG') {
+                        element.draggable = false;
+                        element.style.pointerEvents = 'none';
+                    }
+                });
+            }
+
+            const contentSections = document.querySelectorAll('main, section, .skills-section');
+            contentSections.forEach(section => {
+                const elements = section.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, img, li');
+                makeUnselectable(elements);
+            });
+
+            const header = document.querySelector('header');
+            if (header) {
+                const headerElements = header.querySelectorAll('div, span, img');
+                makeUnselectable(headerElements);
+            }
+        });
+
         // Load header
         fetch('header.html')
             .then(response => response.text())

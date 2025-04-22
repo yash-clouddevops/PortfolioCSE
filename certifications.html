@@ -207,16 +207,42 @@
             margin: 0 auto;
             transition: all 0.3s ease;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            pointer-events: auto;
         }
         .badge-content img:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+            transform: scale(1.1);
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
         }
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: 1fr;
                 padding: 0 1rem;
             }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #e5989b, #b5838d);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #b5838d, #9a6b75);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #e5989b rgba(255, 255, 255, 0.1);
         }
     </style>
     <script>
@@ -246,6 +272,43 @@
                 toggleBtn.innerHTML = '<i class="fas fa-id-badge"></i>';
             }
         }
+
+        // Make all content unselectable
+        document.addEventListener('DOMContentLoaded', function() {
+            function makeUnselectable(elements) {
+                elements.forEach(element => {
+                    if (element.tagName === 'A' || element.tagName === 'BUTTON' || 
+                        element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' ||
+                        element.classList.contains('download-btn') ||
+                        element.classList.contains('badge-toggle') ||
+                        element.closest('.badge-content')) {
+                        return;
+                    }
+
+                    element.style.userSelect = 'none';
+                    element.style.webkitUserSelect = 'none';
+                    element.style.mozUserSelect = 'none';
+                    element.style.msUserSelect = 'none';
+
+                    if (element.tagName === 'IMG') {
+                        element.draggable = false;
+                        element.style.pointerEvents = 'none';
+                    }
+                });
+            }
+
+            const contentSections = document.querySelectorAll('main, section, .certifications-section');
+            contentSections.forEach(section => {
+                const elements = section.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, img, li');
+                makeUnselectable(elements);
+            });
+
+            const header = document.querySelector('header');
+            if (header) {
+                const headerElements = header.querySelectorAll('div, span, img');
+                makeUnselectable(headerElements);
+            }
+        });
 
         // Load header
         fetch('header.html')
